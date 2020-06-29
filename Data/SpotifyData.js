@@ -18,13 +18,11 @@ class SpotifyData {
         await accessToken.clientCredentialsGrant().then(async function(data) {
       
             accessToken.setAccessToken(data.body['access_token']); 
-            //searchPlaylists searchTracks
             await accessToken.searchTracks(`genre:${genre}`, {
 
                 Authorization: data.body['access_token'],
 
             }).then(function(dado) {
-                //playlist = dado.body.playlists.items;
                 playlist = dado.body.tracks.items;
 
             }, function(err) {
